@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "521950740161",
+    "firebase_url": "https://chatapp-bb3fe.firebaseio.com",
+    "project_id": "chatapp-bb3fe",
+    "storage_bucket": "chatapp-bb3fe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:521950740161:android:585fdb79cf182da6",
+        "android_client_info": {
+          "package_name": "com.tuna.chatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "521950740161-02vt6nink4gmvbuu8d4thf7mkl077sph.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tuna.chatapp",
+            "certificate_hash": "5ef58074dd106f7abdf5040c660ed058ee97922f"
+          }
+        },
+        {
+          "client_id": "521950740161-jn3mqm6s0g05gouv6q4lfch36do5ehud.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUho8XOliR6mOSaAt74C2DK1CLQNfQ4uk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "521950740161-jn3mqm6s0g05gouv6q4lfch36do5ehud.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
