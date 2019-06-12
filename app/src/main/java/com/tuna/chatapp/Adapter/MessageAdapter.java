@@ -1,7 +1,6 @@
 package com.tuna.chatapp.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -51,7 +50,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     public void onBindViewHolder(@NonNull MessageAdapter.ViewHolder holder, int position) {
         Chat chat = mChat.get(position);
         holder.show_message.setText(chat.getMessage());
-        if(imageurl.equals("")){
+        if(imageurl.equals("default")){
             holder.profile_image.setImageResource(R.mipmap.ic_launcher);
         }else{
             Glide.with(mContext).load(imageurl).into(holder.profile_image);

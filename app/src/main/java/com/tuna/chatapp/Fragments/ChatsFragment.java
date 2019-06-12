@@ -85,17 +85,17 @@ public class ChatsFragment extends Fragment {
                     for (String id : usersList) {
                         if (user.getId().equals(id)) {
                             if (mUsers.size() != 0) {
-                                for (User user1 : mUsers) {
-                                    if (!user.getId().equals(user1.getId())) {
-                                        mUsers.add(user);
-                                    }
-                                }
+//                                for (User user1 : mUsers) {
+//                                    if (!user.getId().equals(user1.getId())) {
+//                                        mUsers.add(user);
+//                                    }
+//                                }
                             } else {
                                 mUsers.add(user);
                             }
                         }
                     }
-                    adapter = new UserAdapter(getContext(), mUsers);
+                    adapter = new UserAdapter(getContext(), mUsers, true);
                     rcView.setAdapter(adapter);
                 }
 
