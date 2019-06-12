@@ -19,14 +19,22 @@
         <TextView
             android:id="@+id/show_message"
             android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_right"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:textSize="18sp"
+        android:textColor="#fff"
+        android:padding="8dp"
+        android:text="Hello"/>
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_right"
-            android:layout_alignParentEnd="true"
+            android:id="@+id/txt_seen"
+            android:layout_below="@id/show_message"
             android:layout_alignParentRight="true"
-            android:textSize="18sp"
-            android:textColor="#fff"
-            android:padding="8dp"
-            android:text="Hello"/>
+            android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
 
