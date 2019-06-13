@@ -16,10 +16,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.tuna.chatapp.Adapter.UserAdapter;
 import com.tuna.chatapp.Model.Chat;
 import com.tuna.chatapp.Model.Chatlist;
 import com.tuna.chatapp.Model.User;
+import com.tuna.chatapp.Notification.Token;
 import com.tuna.chatapp.R;
 
 import java.util.ArrayList;
@@ -64,8 +66,16 @@ public class ChatsFragment extends Fragment {
             }
         });
 
+        updateToken(FirebaseInstanceId.getInstance().getToken());
+
 
         return view;
+    }
+
+    private void updateToken(String token){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Tokens");
+        Token token1 = new Token(token);
+        reference.child(fuser.getUid()).setValue(token1);
     }
 
     private void chatList() {
