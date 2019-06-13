@@ -27,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.tuna.chatapp.Fragments.ChatsFragment;
 import com.tuna.chatapp.Fragments.ProfileFragment;
 import com.tuna.chatapp.Fragments.UsersFragment;
+import com.tuna.chatapp.Model.Chat;
 import com.tuna.chatapp.Model.User;
 
 import java.util.ArrayList;
@@ -46,20 +47,47 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
 
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        viewPagerAdapter.addFragment(new ChatsFragment(),"Chats");
-        viewPagerAdapter.addFragment(new UsersFragment(),"Users");
-        viewPagerAdapter.addFragment(new ProfileFragment(),"Profile");
-        viewPager.setAdapter(viewPagerAdapter);
 
-        tabLayout.setupWithViewPager(viewPager);
+        reference = FirebaseDatabase.getInstance().getReference("Chats");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+                int unread = 0;
+                for(DataSnapshot snapshot:dataSnapshot.getChildren()){
+
+                    Chat chat = snapshot.getValue(Chat.class);
+                    if(chat.getReceiver().equals(firebaseUser.getUid())&&!chat.isIsseen()){
+                        unread++;
+                    }
+                }
+
+                if(unread==0){
+                    viewPagerAdapter.addFragment(new ChatsFragment(),"Chats");
+                }else{
+                    viewPagerAdapter.addFragment(new ChatsFragment(),"Chats ("+unread+")");
+                }
+
+                viewPagerAdapter.addFragment(new UsersFragment(),"Users");
+                viewPagerAdapter.addFragment(new ProfileFragment(),"Profile");
+
+                viewPager.setAdapter(viewPagerAdapter);
+
+                tabLayout.setupWithViewPager(viewPager);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void initView() {
